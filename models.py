@@ -1,8 +1,11 @@
 # models.py
-from pydantic import BaseModel, EmailStr, field_validator
-from pydantic_core import PydanticCustomError
+from pydantic import BaseModel, EmailStr, field_validator, ValidationError, TypeAdapter
+from pydantic_core import PydanticCustomError # <--- ESTA LÍNEA SE VA
 from typing import Optional
 import re
+
+# Forma oficial de Pydantic v2 de validar un tipo, (adaptador reutilizable)
+email_type_adapter = TypeAdapter(EmailStr)
 
 class ContactCreate(BaseModel):
     nombre: str
@@ -28,11 +31,10 @@ class ContactCreate(BaseModel):
     @field_validator('email')
     def email_valido(cls, v):
         try:
-            EmailStr._validate(v) 
-        except PydanticCustomError:
+            # Uso  del adaptador oficial para validar
+            email_type_adapter.validate_python(v)
+        except ValidationError:
             raise ValueError('El correo electrónico no es válido (ej: nombre@dominio.com).')
-        
-        # Si pasa, devolvemos el valor original
         return v
 
     @field_validator('servicio')
