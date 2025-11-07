@@ -2,13 +2,13 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    # Email configuration
+    # Email configuración
     MAILGUN_API_KEY: str
     MAILGUN_DOMAIN: str
 
-    # Email Addresses
-    FROM_EMAIL: str # "Formulario LINMSO <mailgun@linmso.com>"
-    TO_EMAIL: str   # "ventas@linmso.com"
+    # Email direcciones
+    FROM_EMAIL: str 
+    TO_EMAIL: str   
 
     # CORS
     FRONTEND_URL: str # "https://www.linmso.com"

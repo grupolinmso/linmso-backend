@@ -1,5 +1,24 @@
-fly.toml
-.git/
-__pycache__/
-.envrc
+# Ignorar el entorno virtual
 .venv/
+
+# Ignorar el archivo de secretos locales
+.env
+
+# Ignorar metadatos de Git
+.git/
+.gitignore
+.gitattributes
+
+# Ignorar la configuración de Fly.io (no necesita estar en la imagen)
+fly.toml
+
+# Ignorar archivos de Python cacheados
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar archivos de VSCode
+.vscode/
+
+# Ignorar archivos de README (no necesarios para la app)
+README.md
